@@ -1,0 +1,15 @@
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.csprojAssemblyReference.cache
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.AssemblyInfoInputs.cache
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.AssemblyInfo.cs
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.csproj.CoreCompileInputs.cache
+/Users/leo/Desktop/VS code/HomeWork3/bin/Debug/net5.0/HomeWork3.deps.json
+/Users/leo/Desktop/VS code/HomeWork3/bin/Debug/net5.0/HomeWork3.runtimeconfig.json
+/Users/leo/Desktop/VS code/HomeWork3/bin/Debug/net5.0/HomeWork3.runtimeconfig.dev.json
+/Users/leo/Desktop/VS code/HomeWork3/bin/Debug/net5.0/HomeWork3.dll
+/Users/leo/Desktop/VS code/HomeWork3/bin/Debug/net5.0/ref/HomeWork3.dll
+/Users/leo/Desktop/VS code/HomeWork3/bin/Debug/net5.0/HomeWork3.pdb
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.dll
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/ref/HomeWork3.dll
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.pdb
+/Users/leo/Desktop/VS code/HomeWork3/obj/Debug/net5.0/HomeWork3.genruntimeconfig.cache
