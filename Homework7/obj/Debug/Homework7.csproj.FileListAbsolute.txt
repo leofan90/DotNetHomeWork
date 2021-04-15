@@ -1,0 +1,9 @@
+C:\visual studio\Homework7\bin\Debug\Homework7.exe.config
+C:\visual studio\Homework7\bin\Debug\Homework7.exe
+C:\visual studio\Homework7\bin\Debug\Homework7.pdb
+C:\visual studio\Homework7\obj\Debug\Homework7.csprojAssemblyReference.cache
+C:\visual studio\Homework7\obj\Debug\Homework7.Form1.resources
+C:\visual studio\Homework7\obj\Debug\Homework7.Properties.Resources.resources
+C:\visual studio\Homework7\obj\Debug\Homework7.csproj.GenerateResource.cache
+C:\visual studio\Homework7\obj\Debug\Homework7.exe
+C:\visual studio\Homework7\obj\Debug\Homework7.pdb
