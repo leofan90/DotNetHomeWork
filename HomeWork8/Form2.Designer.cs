@@ -28,17 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Clientlabel = new System.Windows.Forms.Label();
             this.OrderIDlabel = new System.Windows.Forms.Label();
             this.OrderIDtextBox1 = new System.Windows.Forms.TextBox();
-            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AddOrderDetailbutton1 = new System.Windows.Forms.Button();
             this.ModifyOrderDetbutton1 = new System.Windows.Forms.Button();
             this.goodslabel = new System.Windows.Forms.Label();
             this.goodstextBox1 = new System.Windows.Forms.TextBox();
-            this.goodsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,25 +43,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.PhoneBox = new System.Windows.Forms.TextBox();
             this.QuantityBox = new System.Windows.Forms.TextBox();
-            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientcomboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.clientIDBox2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
+            this.clientnametextBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // clientBindingSource
-            // 
-            this.clientBindingSource.DataSource = typeof(HomeWork5.Client);
             // 
             // Clientlabel
             // 
             this.Clientlabel.AutoSize = true;
             this.Clientlabel.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Clientlabel.Location = new System.Drawing.Point(113, 245);
+            this.Clientlabel.Location = new System.Drawing.Point(113, 257);
             this.Clientlabel.Name = "Clientlabel";
             this.Clientlabel.Size = new System.Drawing.Size(91, 37);
             this.Clientlabel.TabIndex = 26;
@@ -83,17 +70,12 @@
             // 
             // OrderIDtextBox1
             // 
-            this.OrderIDtextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.orderBindingSource, "OrderID", true));
             this.OrderIDtextBox1.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.OrderIDtextBox1.Location = new System.Drawing.Point(225, 81);
             this.OrderIDtextBox1.Name = "OrderIDtextBox1";
             this.OrderIDtextBox1.Size = new System.Drawing.Size(392, 50);
             this.OrderIDtextBox1.TabIndex = 24;
             this.OrderIDtextBox1.TextChanged += new System.EventHandler(this.OrderIDtextBox1_TextChanged);
-            // 
-            // orderBindingSource
-            // 
-            this.orderBindingSource.DataSource = typeof(HomeWork5.Order);
             // 
             // AddOrderDetailbutton1
             // 
@@ -127,17 +109,12 @@
             // 
             // goodstextBox1
             // 
-            this.goodstextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.goodsBindingSource, "Name", true));
             this.goodstextBox1.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.goodstextBox1.Location = new System.Drawing.Point(225, 349);
             this.goodstextBox1.Name = "goodstextBox1";
             this.goodstextBox1.Size = new System.Drawing.Size(392, 50);
             this.goodstextBox1.TabIndex = 29;
             this.goodstextBox1.TextChanged += new System.EventHandler(this.goodstextBox1_TextChanged);
-            // 
-            // goodsBindingSource
-            // 
-            this.goodsBindingSource.DataSource = typeof(HomeWork5.Goods);
             // 
             // label2
             // 
@@ -151,7 +128,6 @@
             // 
             // textBox1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.goodsBindingSource, "Price", true));
             this.textBox1.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox1.Location = new System.Drawing.Point(225, 443);
             this.textBox1.Name = "textBox1";
@@ -216,23 +192,6 @@
             this.QuantityBox.TabIndex = 39;
             this.QuantityBox.TextChanged += new System.EventHandler(this.QuantityBox_TextChanged);
             // 
-            // orderDetailsBindingSource
-            // 
-            this.orderDetailsBindingSource.DataSource = typeof(HomeWork5.OrderDetails);
-            // 
-            // clientcomboBox1
-            // 
-            this.clientcomboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.clientBindingSource, "Name", true));
-            this.clientcomboBox1.DataSource = this.clientBindingSource;
-            this.clientcomboBox1.DisplayMember = "Name";
-            this.clientcomboBox1.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.clientcomboBox1.FormattingEnabled = true;
-            this.clientcomboBox1.Location = new System.Drawing.Point(225, 253);
-            this.clientcomboBox1.Name = "clientcomboBox1";
-            this.clientcomboBox1.Size = new System.Drawing.Size(392, 45);
-            this.clientcomboBox1.TabIndex = 40;
-            this.clientcomboBox1.SelectedIndexChanged += new System.EventHandler(this.clientcomboBox1_SelectedIndexChanged);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -245,21 +204,30 @@
             // 
             // clientIDBox2
             // 
-            this.clientIDBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBindingSource, "ID", true));
             this.clientIDBox2.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.clientIDBox2.Location = new System.Drawing.Point(225, 163);
             this.clientIDBox2.Name = "clientIDBox2";
             this.clientIDBox2.Size = new System.Drawing.Size(392, 50);
             this.clientIDBox2.TabIndex = 42;
+            this.clientIDBox2.TextChanged += new System.EventHandler(this.clientIDBox2_TextChanged);
+            // 
+            // clientnametextBox2
+            // 
+            this.clientnametextBox2.Font = new System.Drawing.Font("宋体", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.clientnametextBox2.Location = new System.Drawing.Point(225, 254);
+            this.clientnametextBox2.Name = "clientnametextBox2";
+            this.clientnametextBox2.Size = new System.Drawing.Size(392, 50);
+            this.clientnametextBox2.TabIndex = 43;
+            this.clientnametextBox2.TextChanged += new System.EventHandler(this.clientnametextBox2_TextChanged);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1306, 892);
+            this.Controls.Add(this.clientnametextBox2);
             this.Controls.Add(this.clientIDBox2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.clientcomboBox1);
             this.Controls.Add(this.QuantityBox);
             this.Controls.Add(this.PhoneBox);
             this.Controls.Add(this.label4);
@@ -278,10 +246,6 @@
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.goodsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,20 +259,16 @@
         private System.Windows.Forms.Button ModifyOrderDetbutton1;
         private System.Windows.Forms.Label goodslabel;
         private System.Windows.Forms.TextBox goodstextBox1;
-        private System.Windows.Forms.BindingSource clientBindingSource;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.BindingSource goodsBindingSource;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.BindingSource orderBindingSource;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox AddressBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox PhoneBox;
         private System.Windows.Forms.TextBox QuantityBox;
-        private System.Windows.Forms.BindingSource orderDetailsBindingSource;
-        private System.Windows.Forms.ComboBox clientcomboBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox clientIDBox2;
+        private System.Windows.Forms.TextBox clientnametextBox2;
     }
 }

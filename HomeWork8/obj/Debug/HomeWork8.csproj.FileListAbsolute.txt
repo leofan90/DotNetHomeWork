@@ -1,9 +1,6 @@
 C:\visual studio\HomeWork8\bin\Debug\HomeWork8.exe.config
 C:\visual studio\HomeWork8\bin\Debug\HomeWork8.exe
 C:\visual studio\HomeWork8\bin\Debug\HomeWork8.pdb
-C:\visual studio\HomeWork8\bin\Debug\HomeWork5.exe
-C:\visual studio\HomeWork8\bin\Debug\HomeWork5.pdb
-C:\visual studio\HomeWork8\bin\Debug\HomeWork5.exe.config
 C:\visual studio\HomeWork8\obj\Debug\HomeWork8.csprojAssemblyReference.cache
 C:\visual studio\HomeWork8\obj\Debug\HomeWork8.Form1.resources
 C:\visual studio\HomeWork8\obj\Debug\HomeWork8.Form2.resources
@@ -12,3 +9,6 @@ C:\visual studio\HomeWork8\obj\Debug\HomeWork8.csproj.GenerateResource.cache
 C:\visual studio\HomeWork8\obj\Debug\HomeWork8.csproj.CopyComplete
 C:\visual studio\HomeWork8\obj\Debug\HomeWork8.exe
 C:\visual studio\HomeWork8\obj\Debug\HomeWork8.pdb
+C:\visual studio\HomeWork8\bin\Debug\HomeWork6.exe
+C:\visual studio\HomeWork8\bin\Debug\HomeWork6.pdb
+C:\visual studio\HomeWork8\bin\Debug\HomeWork6.exe.config

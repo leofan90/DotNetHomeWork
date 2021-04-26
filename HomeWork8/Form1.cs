@@ -15,9 +15,9 @@ namespace HomeWork8
         public String property { get; set; }
         public String finding { get; set; }
 
-        internal static List<HomeWork5.Order> orderlist = new List<HomeWork5.Order>();
+        internal static List<HomeWork6.Order> orderlist = new List<HomeWork6.Order>();
 
-        internal static HomeWork5.OrderService orderService = new HomeWork5.OrderService();
+        internal static HomeWork6.OrderService orderService = new HomeWork6.OrderService();
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +27,16 @@ namespace HomeWork8
         {
             findingBox.DataBindings.Add("Text", this, "finding");
             selectProperty.DataBindings.Add("SelectedItem", this, "property");
+//            HomeWork6.Client client1 = new HomeWork6.Client("TeacherID", "Teacher");
+
+//            HomeWork6.Goods bread = new HomeWork6.Goods("bread", 10);
+
+//           HomeWork6.Order order1 = new HomeWork6.Order("1", client1);
+
+//            order1.addDetails(new HomeWork6.OrderDetails(bread, 4, "America", "12345"));
+
+//            orderService.addOrder(order1);
+
         }
 
         private void goodsBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -56,8 +66,22 @@ namespace HomeWork8
 
         private void DeleteOrderbutton_Click(object sender, EventArgs e)
         {
-            orderlist = orderService.findOrder(property, finding);
-            foreach (HomeWork5.Order item in Form1.orderlist) { HomeWork5.Order order = item; Form1.orderService.deleteOrder(order); }
+            Form1.orderlist = Form1.orderService.findOrder(property, finding);
+            foreach (HomeWork6.Order item in Form1.orderlist) { Form1.orderService.deleteOrder(item); }
+            foreach (HomeWork6.Order item in Form1.orderService.showOrder())
+            {
+                this.clientBindingSource.DataSource = item.Client;
+                this.orderBindingSource.DataSource = new HomeWork6.Order(item.OrderID, item.Client);
+                foreach (HomeWork6.OrderDetails item2 in item.Details)
+                {
+                    this.goodsBindingSource.DataSource = item2.Goods;
+                    this.orderDetailsBindingSource.DataSource = new HomeWork6.OrderDetails(item2.Goods, item2.Quantity, item2.Address, item2.Phone);
+                }
+            }
+            orderDetailGridView1.Update();
+            ClientGridView2.Update();
+            GoodsGridView3.Update();
+            OrderGridView4.Update();
         }
 
         private void ModifyOrderbutton1_Click(object sender, EventArgs e)
@@ -98,7 +122,20 @@ namespace HomeWork8
         private void search_Click(object sender, EventArgs e)
         {
             orderlist = orderService.findOrder(property, finding);
-
+            foreach (HomeWork6.Order item in Form1.orderlist) 
+            {
+                this.clientBindingSource.DataSource = item.Client;
+                this.orderBindingSource.DataSource = new HomeWork6.Order(item.OrderID, item.Client);
+                foreach(HomeWork6.OrderDetails item2 in item.Details)
+                {
+                    this.goodsBindingSource.DataSource = item2.Goods;
+                    this.orderDetailsBindingSource.DataSource = new HomeWork6.OrderDetails(item2.Goods, item2.Quantity, item2.Address, item2.Phone);
+                }
+            }
+            orderDetailGridView1.Update();
+            ClientGridView2.Update();
+            GoodsGridView3.Update();
+            OrderGridView4.Update();
         }
 
         private void ClientGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,6 +154,19 @@ namespace HomeWork8
         }
 
         private void orderDetailGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            orderDetailGridView1.Update();
+            ClientGridView2.Update();
+            GoodsGridView3.Update();
+            OrderGridView4.Update();
+        }
+
+        private void clientBindingSource_CurrentChanged_1(object sender, EventArgs e)
         {
 
         }

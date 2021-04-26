@@ -79,6 +79,11 @@
     <None Include="Properties\DataSources\HomeWork5.Goods.datasource" />
     <None Include="Properties\DataSources\HomeWork5.Order.datasource" />
     <None Include="Properties\DataSources\HomeWork5.OrderDetails.datasource" />
+    <None Include="Properties\DataSources\HomeWork6.Client.datasource" />
+    <None Include="Properties\DataSources\HomeWork6.Goods.datasource" />
+    <None Include="Properties\DataSources\HomeWork6.Order.datasource" />
+    <None Include="Properties\DataSources\HomeWork6.OrderDetails.datasource" />
+    <None Include="Properties\DataSources\HomeWork6.OrderService.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,9 +98,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HomeWork5\HomeWork5.csproj">
-      <Project>{d492e7ce-c13b-4003-a0aa-2b64996e12e1}</Project>
-      <Name>HomeWork5</Name>
+    <ProjectReference Include="..\HomeWork6\HomeWork6.csproj">
+      <Project>{f327c081-e954-44ce-901f-bab936553e8d}</Project>
+      <Name>HomeWork6</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

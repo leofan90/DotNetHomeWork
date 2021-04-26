@@ -13,9 +13,10 @@ namespace HomeWork8
     public partial class Form2 : Form
     {
         public String orderID { get; set; }
-        public HomeWork5.Client client { get; set; }
-        public HomeWork5.Goods goods { get; set; }
-        public HomeWork5.OrderDetails orderDetails { get; set; }
+        public String clientname { get; set; }
+        public String clientID { get; set; }
+        public String goodsname { get; set; }
+        public double goodsprice { get; set; }
         public String phone { get; set; }
         public String address { get; set; }
         public int quantity { get; set; }
@@ -26,10 +27,11 @@ namespace HomeWork8
 
         private void Form2_Load(object sender, EventArgs e)
         {
-//            OrderIDtextBox1.DataBindings.Add("Text", this, "orderID");
-//            ClientBox.DataBindings.Add("Text", this, "client");
-//            goodstextBox1.DataBindings.Add("Text", this, "goods.Name");
-//            textBox1.DataBindings.Add("Text", this, "goods.Price");
+            OrderIDtextBox1.DataBindings.Add("Text", this, "orderID");
+            clientIDBox2.DataBindings.Add("Text", this, "clientID");
+            clientnametextBox2.DataBindings.Add("Text", this, "clientname");
+            goodstextBox1.DataBindings.Add("Text", this, "goodsname");
+            textBox1.DataBindings.Add("Text", this, "goodsprice");
             QuantityBox.DataBindings.Add("Text", this, "quantity");
             AddressBox.DataBindings.Add("Text", this, "address");
             PhoneBox.DataBindings.Add("Text", this, "phone");
@@ -42,17 +44,21 @@ namespace HomeWork8
 
         private void ModifyOrderDetbutton1_Click(object sender, EventArgs e)
         {
-            HomeWork5.Order neworder = new HomeWork5.Order(orderID, client);
-            HomeWork5.OrderDetails neworderdetails = new HomeWork5.OrderDetails(goods, quantity, address, phone);
+            HomeWork6.Client client = new HomeWork6.Client(clientID, clientname);
+            HomeWork6.Goods goods = new HomeWork6.Goods(goodsname, goodsprice);
+            HomeWork6.Order neworder = new HomeWork6.Order(orderID, client);
+            HomeWork6.OrderDetails neworderdetails = new HomeWork6.OrderDetails(goods, quantity, address, phone);
             neworder.addDetails(neworderdetails);
             Form1.orderlist = Form1.orderService.findOrder("order", orderID);
-            foreach(HomeWork5.Order item in Form1.orderlist) { HomeWork5.Order order = item; Form1.orderService.modifyOrder(order, neworder); }
+            foreach(HomeWork6.Order item in Form1.orderlist) { HomeWork6.Order order = item; Form1.orderService.modifyOrder(order, neworder); }
         }
 
         private void AddOrderDetailbutton1_Click(object sender, EventArgs e)
         {
-            HomeWork5.Order neworder = new HomeWork5.Order(orderID, client);
-            HomeWork5.OrderDetails neworderdetails = new HomeWork5.OrderDetails(goods, quantity, address, phone);
+            HomeWork6.Client client = new HomeWork6.Client(clientID, clientname);
+            HomeWork6.Goods goods = new HomeWork6.Goods(goodsname, goodsprice);
+            HomeWork6.Order neworder = new HomeWork6.Order(orderID, client);
+            HomeWork6.OrderDetails neworderdetails = new HomeWork6.OrderDetails(goods, quantity, address, phone);
             neworder.addDetails(neworderdetails);
             Form1.orderService.addOrder(neworder);
         }
@@ -82,12 +88,12 @@ namespace HomeWork8
 
         }
 
-        private void ClientBox_TextChanged(object sender, EventArgs e)
+        private void clientIDBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void clientcomboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void clientnametextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
