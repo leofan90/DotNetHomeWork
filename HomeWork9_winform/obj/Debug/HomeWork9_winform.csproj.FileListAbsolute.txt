@@ -1,0 +1,9 @@
+C:\visual studio\HomeWork9_winform\bin\Debug\HomeWork9_winform.exe.config
+C:\visual studio\HomeWork9_winform\bin\Debug\HomeWork9_winform.exe
+C:\visual studio\HomeWork9_winform\bin\Debug\HomeWork9_winform.pdb
+C:\visual studio\HomeWork9_winform\obj\Debug\HomeWork9_winform.csprojAssemblyReference.cache
+C:\visual studio\HomeWork9_winform\obj\Debug\HomeWork9_winform.Form1.resources
+C:\visual studio\HomeWork9_winform\obj\Debug\HomeWork9_winform.Properties.Resources.resources
+C:\visual studio\HomeWork9_winform\obj\Debug\HomeWork9_winform.csproj.GenerateResource.cache
+C:\visual studio\HomeWork9_winform\obj\Debug\HomeWork9_winform.exe
+C:\visual studio\HomeWork9_winform\obj\Debug\HomeWork9_winform.pdb
