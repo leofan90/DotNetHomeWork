@@ -1,0 +1,15 @@
+/Users/leo/Desktop/VS code/HomeWork10/bin/Debug/net5.0/HomeWork10.deps.json
+/Users/leo/Desktop/VS code/HomeWork10/bin/Debug/net5.0/HomeWork10.runtimeconfig.json
+/Users/leo/Desktop/VS code/HomeWork10/bin/Debug/net5.0/HomeWork10.runtimeconfig.dev.json
+/Users/leo/Desktop/VS code/HomeWork10/bin/Debug/net5.0/HomeWork10.dll
+/Users/leo/Desktop/VS code/HomeWork10/bin/Debug/net5.0/ref/HomeWork10.dll
+/Users/leo/Desktop/VS code/HomeWork10/bin/Debug/net5.0/HomeWork10.pdb
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.csprojAssemblyReference.cache
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.AssemblyInfoInputs.cache
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.AssemblyInfo.cs
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.csproj.CoreCompileInputs.cache
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.dll
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/ref/HomeWork10.dll
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.pdb
+/Users/leo/Desktop/VS code/HomeWork10/obj/Debug/net5.0/HomeWork10.genruntimeconfig.cache
