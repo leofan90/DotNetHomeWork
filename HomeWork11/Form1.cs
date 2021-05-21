@@ -21,14 +21,19 @@ namespace HomeWork8
                 Database.SetInitializer(new DropCreateDatabaseIfModelChanges<OrderContext>());
             }
             public DbSet<HomeWork6.Order> Orders { get; set; }
+            public DbSet<HomeWork6.OrderDetails> OrderDetails { get; set; }
+            public DbSet<HomeWork6.Client> Clients { get; set; }
+            public DbSet<HomeWork6.Goods> Goods { get; set; }
         }
 
         public String property { get; set; }
         public String finding { get; set; }
 
-        internal static List<HomeWork6.Order> orderlist = new List<HomeWork6.Order>();
+        public HomeWork6.Order Oldorder { get; set; }
+        public IQueryable<HomeWork6.Order> query { get; set; }
 
-        internal static HomeWork6.OrderService orderService = new HomeWork6.OrderService();
+        public List<HomeWork6.Order> orderlist = new List<HomeWork6.Order>();
+
         public Form1()
         {
             InitializeComponent();
@@ -79,10 +84,37 @@ namespace HomeWork8
         {
             using (var db = new Form1.OrderContext())
             {
-                Form1.orderlist = Form1.orderService.findOrder(property, finding);
-                foreach (var o in Form1.orderlist) { db.Orders.Remove(o); db.SaveChanges(); }
+                switch (property)
+                {
+                    case "client":
+                        Oldorder = db.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Client.Name == finding);
+                        break;
+                    case "goods":
+                        Oldorder = db.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Goods.Name == finding));
+                        break;
+                    case "address":
+                        Oldorder = db.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Address == finding));
+                        break;
+                    case "phone":
+                        Oldorder = db.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Phone == finding));
+                        break;
+                    case "total":
+                        Oldorder = db.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Total == Double.Parse(finding)));
+                        break;
+                    default:
+                        Oldorder = db.Orders.Include("client").Include("Details").SingleOrDefault(o => o.OrderID == finding);
+                        break;
+                }
+                if (Oldorder != null)
+                {
+                    db.Clients.Remove(Oldorder.Client);
+                    db.OrderDetails.RemoveRange(Oldorder.Details);
+                    db.Orders.Remove(Oldorder);
+                    db.SaveChanges();
+                }
+                 orderlist = db.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Customer").ToList();
             }
-            foreach (HomeWork6.Order item in Form1.orderService.showOrder())
+            foreach (HomeWork6.Order item in orderlist)
             {
                 this.clientBindingSource.DataSource = item.Client;
                 this.orderBindingSource.DataSource = new HomeWork6.Order(item.OrderID, item.Client);
@@ -110,12 +142,12 @@ namespace HomeWork8
 
         private void OutputOrderbutton1_Click(object sender, EventArgs e)
         {
-            orderService.orderExport("export.xml");
+
         }
 
         private void InputOrderbutton1_Click(object sender, EventArgs e)
         {
-            orderService.orderExport("import.xml");
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -135,8 +167,43 @@ namespace HomeWork8
 
         private void search_Click(object sender, EventArgs e)
         {
-            orderlist = orderService.findOrder(property, finding);
-            foreach (HomeWork6.Order item in Form1.orderlist) 
+            using (var db = new Form1.OrderContext())
+            {
+                switch (property)
+                {
+                    case "client":
+                        query = db.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Client")
+                            .Where(order => order.Client.Name == finding);
+                        query.ToList();
+                        break;
+                    case "goods":
+                        query = db.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Client")
+                            .Where(order => order.Details.Any(item => item.Goods.Name == finding));
+                        query.ToList();
+                        break;
+                    case "address":
+                        query = db.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Client")
+                            .Where(order => order.Details.Any(item => item.Address == finding));
+                        query.ToList();
+                        break;
+                    case "phone":
+                        query = db.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Client")
+                            .Where(order => order.Details.Any(item => item.Phone == finding));
+                        query.ToList();
+                        break;
+                    case "total":
+                        query = db.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Client")
+                            .Where(order => order.Details.Any(item => item.Total == Double.Parse(finding)));
+                        query.ToList();
+                        break;
+                    default:
+                        query = db.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Client")
+                            .Where(order => order.OrderID == finding);
+                        query.ToList();
+                        break;
+                }         
+            }
+            foreach (HomeWork6.Order item in query) 
             {
                 this.clientBindingSource.DataSource = item.Client;
                 this.orderBindingSource.DataSource = new HomeWork6.Order(item.OrderID, item.Client);

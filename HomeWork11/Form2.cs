@@ -46,15 +46,24 @@ namespace HomeWork8
 
         private void ModifyOrderDetbutton1_Click(object sender, EventArgs e)
         {
-            HomeWork6.Client client = new HomeWork6.Client(clientID, clientname);
-            HomeWork6.Goods goods = new HomeWork6.Goods(goodsname, goodsprice);
-            HomeWork6.Order neworder = new HomeWork6.Order(orderID, client);
-            HomeWork6.OrderDetails neworderdetails = new HomeWork6.OrderDetails(goods, quantity, address, phone);
-            neworder.addDetails(neworderdetails);
             using (var db = new Form1.OrderContext())
             {
-                var query = db.Orders.Where(o => o.OrderID == orderID).OrderBy(o => o.Details.All(d => d.Total > 0));
-                foreach(var o in query) { db.Orders.Remove(o); db.SaveChanges(); }
+                var oldorder = db.Orders.Include("client").Include("Details").SingleOrDefault(o => o.OrderID == orderID);
+                if (oldorder != null)
+                {
+                    db.Clients.Remove(oldorder.Client);
+                    db.OrderDetails.RemoveRange(oldorder.Details);
+                    db.Orders.Remove(oldorder);
+                    db.SaveChanges();
+                }
+                HomeWork6.Client client = new HomeWork6.Client(clientID, clientname);
+                db.Entry(client).State = EntityState.Added;
+                HomeWork6.Goods goods = new HomeWork6.Goods(goodsname, goodsprice);
+                db.Entry(goods).State = EntityState.Added;
+                HomeWork6.Order neworder = new HomeWork6.Order(orderID, client);
+                db.Entry(neworder).State = EntityState.Added;
+                HomeWork6.OrderDetails neworderdetails = new HomeWork6.OrderDetails(goods, quantity, address, phone);
+                neworder.Details = new List<HomeWork6.OrderDetails>() { new HomeWork6.OrderDetails() { Goods = goods, Quantity = quantity, Address = address, Phone = phone } };
                 db.Orders.Add(neworder);
                 db.SaveChanges();
             }
@@ -62,13 +71,16 @@ namespace HomeWork8
 
         private void AddOrderDetailbutton1_Click(object sender, EventArgs e)
         {
-            HomeWork6.Client client = new HomeWork6.Client(clientID, clientname);
-            HomeWork6.Goods goods = new HomeWork6.Goods(goodsname, goodsprice);
-            HomeWork6.Order neworder = new HomeWork6.Order(orderID, client);
-            HomeWork6.OrderDetails neworderdetails = new HomeWork6.OrderDetails(goods, quantity, address, phone);
-            neworder.addDetails(neworderdetails);
             using (var db = new Form1.OrderContext())
             {
+                HomeWork6.Client client = new HomeWork6.Client(clientID, clientname);
+                db.Entry(client).State = EntityState.Added;
+                HomeWork6.Goods goods = new HomeWork6.Goods(goodsname, goodsprice);
+                db.Entry(goods).State = EntityState.Added;
+                HomeWork6.Order neworder = new HomeWork6.Order(orderID, client);
+                db.Entry(neworder).State = EntityState.Added;
+                HomeWork6.OrderDetails neworderdetails = new HomeWork6.OrderDetails(goods, quantity, address, phone);
+                neworder.Details = new List<HomeWork6.OrderDetails>() { new HomeWork6.OrderDetails() { Goods = goods, Quantity = quantity, Address = address, Phone = phone } };
                 db.Orders.Add(neworder);
                 db.SaveChanges();
             }
