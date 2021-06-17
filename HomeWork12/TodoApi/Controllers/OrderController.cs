@@ -20,79 +20,74 @@ namespace TodoApi.Controllers
             this.orderDb = context;
         }
 
+        //POST: api/AddOrder
         [HttpPost]
-        public ActionResult<List<Order>> AddOrder(string clientID, string clientname, string goodsname, double goodsprice, string orderID, int quantity, string address, string phone, string add){
-            IQueryable<Order> query = orderDb.Orders;
-            Client client = new Client(clientID, clientname);
-            orderDb.Entry(client).State = EntityState.Added;
-            Goods goods = new Goods(goodsname, goodsprice);
-            orderDb.Entry(goods).State = EntityState.Added;
-            Order neworder = new Order(orderID, client);
-            orderDb.Entry(neworder).State = EntityState.Added;
-            OrderDetails neworderdetails = new OrderDetails(goods, quantity, address, phone);
-            neworder.Details = new List<OrderDetails>() { new OrderDetails() { Goods = goods, Quantity = quantity, Address = address, Phone = phone } };
-            orderDb.Orders.Add(neworder);
-            orderDb.SaveChanges();
-            return query.ToList();
-        }
-
-        [HttpPost]
-        public ActionResult<Order> ModifyOrder(string clientID, string clientname, string goodsname, double goodsprice, string orderID, int quantity, string address, string phone){
-            var oldorder = orderDb.Orders.Include("client").Include("Details").SingleOrDefault(o => o.OrderID == orderID);
-            if (oldorder != null)
+        public ActionResult<Order> AddOrder(Order order){
+            try
             {
-                orderDb.Clients.Remove(oldorder.Client);
-                orderDb.OrderDetails.RemoveRange(oldorder.Details);
-                orderDb.Orders.Remove(oldorder);
+                orderDb.Orders.Add(order);
                 orderDb.SaveChanges();
             }
-            Client client = new Client(clientID, clientname);
-            orderDb.Entry(client).State = EntityState.Added;
-            Goods goods = new Goods(goodsname, goodsprice);
-            orderDb.Entry(goods).State = EntityState.Added;
-            Order neworder = new Order(orderID, client);
-            orderDb.Entry(neworder).State = EntityState.Added;
-            OrderDetails neworderdetails = new OrderDetails(goods, quantity, address, phone);
-            neworder.Details = new List<OrderDetails>() { new OrderDetails() { Goods = goods, Quantity = quantity, Address = address, Phone = phone } };
-            orderDb.Orders.Add(neworder);
-            orderDb.SaveChanges();
-            return neworder;
+            catch (Exception e)
+            {
+                return BadRequest(e.InnerException.Message);
+            }
+            return order;
         }
 
+        //POST: api/AddOrderDetail
         [HttpPost]
-        public ActionResult<List<Order>> DeleteOrder(string property, string finding){
-            List<Order> query;
-            Order Oldorder;
-            switch (property)
+        public ActionResult<OrderDetails> AddOrderDetail(OrderDetails orderDetail){
+            try
             {
-                case "client":
-                    Oldorder = orderDb.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Client.Name == finding);
-                    break;
-                case "goods":
-                    Oldorder = orderDb.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Goods.Name == finding));
-                    break;
-                case "address":
-                    Oldorder = orderDb.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Address == finding));
-                    break;
-                case "phone":
-                    Oldorder = orderDb.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Phone == finding));
-                    break;
-                case "total":
-                    Oldorder = orderDb.Orders.Include("client").Include("Details").SingleOrDefault(o => o.Details.Any(d => d.Total == Double.Parse(finding)));
-                    break;
-                default:
-                    Oldorder = orderDb.Orders.Include("client").Include("Details").SingleOrDefault(o => o.OrderID == finding);
-                    break;
-            }
-            if (Oldorder != null)
-            {
-                orderDb.Clients.Remove(Oldorder.Client);
-                orderDb.OrderDetails.RemoveRange(Oldorder.Details);
-                orderDb.Orders.Remove(Oldorder);
+                orderDb.OrderDetails.Add(orderDetail);
                 orderDb.SaveChanges();
             }
-            query = orderDb.Orders.Include(o => o.Details.Select(d => d.Goods)).Include("Customer").ToList();
-            return query;
+            catch (Exception e)
+            {
+                return BadRequest(e.InnerException.Message);
+            }
+            return orderDetail;
+        }
+
+        // PUT: api/Order/{id}
+        [HttpPut("{id}")]
+        public ActionResult<Order> Edit(string id, Order order)
+        {
+            if (id != order.OrderID)
+            {
+                return BadRequest("Id cannot be modified!");
+            }
+            try
+            {
+                orderDb.Entry(order).State = EntityState.Modified;
+                orderDb.SaveChanges();
+            }catch(Exception e)
+            {
+                string error = e.Message;
+                if (e.InnerException != null) error = e.InnerException.Message;
+                return BadRequest(error);
+            }
+            return NoContent();
+        }
+
+        // DELETE: api/Order/{id}
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id)
+        {
+            try
+            {
+                var order = orderDb.Orders.FirstOrDefault(o => o.OrderID == id);
+                if (order != null){
+                    orderDb.Remove(order);
+                    orderDb.SaveChanges();
+                }
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.InnerException.Message);
+            }
+            return NoContent();
         }
     }
 }

@@ -28,14 +28,10 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<OrderContext>(options => options
-                .UseMySql(Configuration.GetConnectionString("todoDatabase"), 
-                    new MySqlServerVersion(new Version(8, 0, 23))));
+            services.AddDbContextPool<OrderContext>(opt =>
+                                               opt.UseInMemoryDatabase("OrderList"));
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoApi", Version = "v1" });
-            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +40,6 @@ namespace TodoApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApi v1"));
             }
 
             app.UseHttpsRedirection();
