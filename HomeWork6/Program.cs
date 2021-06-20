@@ -7,9 +7,14 @@ namespace HomeWork6
 {
     public class Client
     {
+        //Primary key
         public string ID { get; set; }
         public string Name { get; set; }
-        public Client(string ID, string Name)
+        public Client()
+        {
+            ID = Guid.NewGuid().ToString();
+        }
+        public Client(string ID, string Name):this()
         {
             this.ID = ID;
             this.Name = Name;
@@ -30,6 +35,8 @@ namespace HomeWork6
     }
     public class Goods
     {
+        //Primary key
+        public string Id { get; set; }
         public string Name { get; set; }
         private double price;
         public double Price
@@ -44,7 +51,11 @@ namespace HomeWork6
                 price = value;
             }
         }
-        public Goods(string Name, double price)
+        public Goods()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+        public Goods(string Name, double price):this()
         {
             this.Name = Name;
             this.Price = price;
@@ -65,10 +76,18 @@ namespace HomeWork6
     }
     public class Order
     {
+        //Primary key
         public string OrderID { get; set; }
+        //Foreign key
+        public string ClientID { get; set; }
+        //Navigation properties
         public Client Client { get; set; }
         public List<OrderDetails> Details = new List<OrderDetails>();
-        public Order(string orderID, Client client)
+        public Order()
+        {
+            OrderID = Guid.NewGuid().ToString();
+        }
+        public Order(string orderID, Client client):this()
         {
             this.OrderID = orderID;
             this.Client = client;
@@ -93,12 +112,19 @@ namespace HomeWork6
     }
     public class OrderDetails
     {
+        //Primary
+        public string Id { get; set; }
+        //Navigation properties
         public Goods Goods { get; set; }
         public int Quantity { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public double Total { get { return Goods.Price * Quantity; } }
-        public OrderDetails(Goods goods, int quantity, string address, string phone)
+        public OrderDetails()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+        public OrderDetails(Goods goods, int quantity, string address, string phone):this()
         {
             this.Goods = goods;
             this.Quantity = quantity;
@@ -135,27 +161,26 @@ namespace HomeWork6
         }
         public void deleteOrder(Order order)
         {
-            var query = from o in orderlist where o.OrderID == order.OrderID select o;
-            if (query == null)
+            if (order == null)
             {
                 throw new System.NullReferenceException();
             }
             else
             {
-                orderlist.Remove((Order)query);
+                    orderlist.Remove(order);
             }
         }
         public void modifyOrder(Order order, Order newOrder)
         {
-            var query = from o in orderlist where o.OrderID == order.OrderID select o;
-            if (query == null)
+//            var query = from o in orderlist where o.OrderID == order.OrderID select o;
+            if (order == null)
             {
                 throw new System.NullReferenceException();
             }
             else
             {
-                orderlist.Remove((Order)query);
-                orderlist.Add((Order)newOrder);
+                    orderlist.Remove(order);
+                    orderlist.Add(newOrder);           
             }
         }
         public List<Order> findOrder(string property, string finding)
@@ -210,18 +235,18 @@ namespace HomeWork6
         }
         public void orderExport(string filename)
         {
-            XmlSerializer xmlserializer = new XmlSerializer(typeof(List<OrderDetails>));
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            XmlSerializer xmlserializer = new XmlSerializer(typeof(List<Order>));
+            using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write))
             {
-                xmlserializer.Serialize(fs, orderlist);
+                xmlserializer.Serialize(fs, this.orderlist);
             }
         }
         public void orderImport(string filename)
         {
-            XmlSerializer xmlserializer = new XmlSerializer(typeof(List<OrderDetails>));
-            using (FileStream fs = new FileStream(filename, FileMode.Open))
+            XmlSerializer xmlserializer = new XmlSerializer(typeof(List<Order>));
+            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
-                List<OrderDetails> xmlorderlist = (List<OrderDetails>)xmlserializer.Deserialize(fs);
+                this.orderlist = (List<Order>)xmlserializer.Deserialize(fs);
             }
         }
     }
@@ -266,6 +291,9 @@ namespace HomeWork6
             Console.WriteLine("\nGetOrdersByGoodsName:'eggs'");
             orders = orderService.findOrder("goods", "eggs");
             orders.ForEach(o => Console.WriteLine(o));
+
+            orderService.orderExport("C:\\visual studio\\HomeWork6\\export.xml");
+            orderService.orderImport("C:\\visual studio\\HomeWork6\\export.xml");
         }
     }
 }

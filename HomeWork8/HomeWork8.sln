@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork8", "HomeWork8.cspr
 		{F327C081-E954-44CE-901F-BAB936553E8D} = {F327C081-E954-44CE-901F-BAB936553E8D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork6", "..\HomeWork6\HomeWork6.csproj", "{F327C081-E954-44CE-901F-BAB936553E8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork6", "..\..\..\..\visual studio\HomeWork6\HomeWork6.csproj", "{F327C081-E954-44CE-901F-BAB936553E8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

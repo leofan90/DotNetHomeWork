@@ -98,7 +98,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HomeWork6\HomeWork6.csproj">
+    <ProjectReference Include="..\..\..\..\visual studio\HomeWork6\HomeWork6.csproj">
       <Project>{f327c081-e954-44ce-901f-bab936553e8d}</Project>
       <Name>HomeWork6</Name>
     </ProjectReference>

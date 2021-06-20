@@ -10,7 +10,7 @@ using TodoApi;
 namespace TodoApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TodoController : ControllerBase
     {
         private readonly OrderContext orderDb;
@@ -18,6 +18,13 @@ namespace TodoApi.Controllers
         public TodoController(OrderContext context)
         {
             this.orderDb = context;
+        }
+
+        //GET: api/Order
+        [HttpGet]
+        public ActionResult<List<Order>> GetOrder(){
+            IQueryable<Order> query = orderDb.Orders;
+            return query.ToList();
         }
 
         //POST: api/AddOrder

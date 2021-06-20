@@ -96,12 +96,12 @@ namespace HomeWork8
 
         private void OutputOrderbutton1_Click(object sender, EventArgs e)
         {
-            orderService.orderExport("export.xml");
+            orderService.orderExport("C:\\Users\\apple\\Desktop\\HomeWork8\\export.xml");
         }
 
         private void InputOrderbutton1_Click(object sender, EventArgs e)
         {
-            orderService.orderExport("import.xml");
+            orderService.orderExport("C:\\Users\\apple\\Desktop\\HomeWork8\\import.xml");
         }
 
         private void label1_Click(object sender, EventArgs e)
